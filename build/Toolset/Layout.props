@@ -6,9 +6,9 @@
   
   <PropertyGroup>
     <ArtifactsDir>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\..\artifacts'))</ArtifactsDir>
-    <OutDirName Condition="'$(OutDirName)' == ''">$([System.IO.Path]::GetFileName('$(MSBuildProjectDirectory)'))</OutDirName>
-    <OutDirBase>$(ArtifactsDir)\$(Configuration)\bin</OutDirBase>
-    <OutDir Condition="'$(OutDir)' == ''">$(OutDirBase)\$(OutDirName)</OutDir>
+    <OutDirName Condition="'$(OutDirName)' == ''">$(MSBuildProjectName)</OutDirName>
+    <OutDir Condition="'$(OutDir)' == ''">$(ArtifactsDir)\$(Configuration)\bin\$(OutDirName)</OutDir>
+    <OutDirBase>$([System.IO.Path]::GetFullPath('$(OutDir)\..'))</OutDirBase>
     <IntermediateOutputPath Condition="'$(IntermediateOutputPath)' == ''">$(ArtifactsDir)\$(Configuration)\obj\$(OutDirName)</IntermediateOutputPath>
     <OutputPath>$(OutDir)</OutputPath>
     
